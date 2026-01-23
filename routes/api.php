@@ -1,9 +1,11 @@
+
 <?php
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; // Keep this
+use App\Http\Controllers\TP6Controller; // <--- ADD THIS LINE
 use \App\Http\Controllers\CategoryController;
-
 use \App\Http\Controllers\ProductController;
 
 Route::get('/user', function (Request $request) {
@@ -29,3 +31,9 @@ Route::controller(ProductController::class)->prefix('products')->group(function(
 
 // Route for products by category
 Route::get('/categories/{categoryId}/products', [ProductController::class, 'getByCategory']);
+
+// Task 3.1: Create author and user account
+Route::post('/authors', [TP6Controller::class, 'createAuthor']);
+Route::post('/audiences', [TP6Controller::class, 'createAudience']);
+Route::post('/articles', [TP6Controller::class, 'createArticle']);
+Route::post('/comments', [TP6Controller::class, 'addComment']);
